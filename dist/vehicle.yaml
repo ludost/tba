@@ -1,0 +1,49 @@
+
+#Some empty comment
+
+templates:
+   defaultAgent:
+        state:
+           builder: com.almende.eve.state.memory.MemoryStateBuilder
+        scheduler:
+           builder: com.almende.eve.scheduling.SimpleSchedulerBuilder
+        transports:
+        -  builder: com.almende.eve.transport.http.HttpTransportBuilder
+           servletUrl: http://localhost:8081/agents/
+           servletLauncher: JettyLauncher
+           servletClass: com.almende.eve.transport.http.DebugServlet
+           doShortcut: true
+           doAuthentication: false
+           jetty: 
+              port: 8081
+
+agents:
+-   id: testVehicle
+    class: nl.ludost.tba.Vehicle
+    extends: templates/defaultAgent
+    updateInterval: -1
+-   id: manager
+    class: nl.ludost.tba.Manager
+    extends: templates/defaultAgent
+    vehicleConfig:
+        class: nl.ludost.tba.Vehicle
+        extends: templates/defaultAgent
+        updateInterval: 500
+        manager: local:manager
+    transports:
+    -  builder: com.almende.eve.transport.http.HttpTransportBuilder
+       servletUrl: http://localhost:8081/agents/
+       servletLauncher: JettyLauncher
+       servletClass: com.almende.eve.transport.http.DebugServlet
+       doShortcut: true
+       doAuthentication: false
+       jetty: 
+          port: 8081
+    -  builder: com.almende.eve.transport.ws.WebsocketTransportBuilder
+       server: true
+       address: ws://localhost:8081/agents
+       servletLauncher: JettyLauncher
+       doShortcut: true
+       doAuthentication: false
+       jetty: 
+          port: 8081

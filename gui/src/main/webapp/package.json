@@ -1,0 +1,21 @@
+{
+  "name": "tbagui",
+  "version": "1.0.0",
+  "description": "A visualisation for the TBA testcase",
+  "main": "gui.js",
+  "dependencies": {
+    "evejs": "^0.5.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
+  },
+  "devDependencies": {
+     "browserify": "3.46.1",
+     "watchify": "3.7.0",
+     "reactify": "1.1.1"
+   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0"
+}

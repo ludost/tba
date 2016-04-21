@@ -6,3 +6,4 @@ target
 .idea
 gitstats
 /bin/
+node_modules
